@@ -13,7 +13,7 @@ This action calculates the merge-base from specified base and head refs, then re
 ```yaml
 - name: Find next commit from merge-base
   id: merge-base-next
-  uses: srz-zumix/merge-base-next-action@v1
+  uses: srz-zumix/merge-base-next-action@v0
   with:
     base: 'main'
     head: 'feature/branch'
@@ -29,7 +29,7 @@ This action calculates the merge-base from specified base and head refs, then re
 ```yaml
 - name: Find next commit from merge-base in another repo
   id: merge-base-next
-  uses: srz-zumix/merge-base-next-action@v1
+  uses: srz-zumix/merge-base-next-action@v0
   with:
     repository: 'owner/repo'
     repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -57,6 +57,6 @@ This action calculates the merge-base from specified base and head refs, then re
 
 This project is licensed under the [MIT License](LICENSE).
 
-## Author
+## Reference
 
-[srz-zumix](https://github.com/srz-zumix)
+[srz-zumix/gh-merge-base-next](https://github.com/srz-zumix/gh-merge-base-next)
