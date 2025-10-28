@@ -7,6 +7,7 @@ jobs:
     permissions:
       contents: read
     strategy:
+      fail-fast: false
       matrix:
         testcase:
           - base: testdata/multiple-merge-base/branch1

@@ -62,7 +62,7 @@ runs:
         fi
         set -x
         "${GH_MERGE_BASE_NEXT}" \
-          --base "${INPUTS_BASE}" --head "${INPUTS_HEAD}" \
+          "${INPUTS_BASE}" "${INPUTS_HEAD}" \
           --format json \
           --template 'sha={{ .sha }}{{ "\n" }}depth={{ .depth }}{{ "\n" }}' \
           "${MERGE_BASE_NEXT_OPTIONS[@]}" >> "${GITHUB_OUTPUT}"
