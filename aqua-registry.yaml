@@ -1,0 +1,9 @@
+packages:
+  - type: github_release
+    repo_owner: srz-zumix
+    repo_name: gh-merge-base-next
+    description: gh-merge-base-next is a tool to find the next commit on first-parent path from merge-base.
+    asset: "{{.OS}}-{{.Arch}}"
+    format: raw
+    github_artifact_attestations:
+      signer_workflow: srz-zumix/gh-merge-base-next/.github/workflows/release.yml

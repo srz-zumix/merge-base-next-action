@@ -1,0 +1,47 @@
+name: Self Test
+on:
+  pull_request:
+
+jobs:
+  test:
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        testcase:
+          - base: testdata/multiple-merge-base/branch1
+            head: testdata/multiple-merge-base/branch2
+            sha: beb86f714f463ead9c78e993715a168d3514a20a
+            depth: '2'
+          - base: 8c7a9d4b44737dee39a8893358c3cfdd81172ffd
+            head: testdata/multiple-merge-base/branch1
+            sha: a8184be5d737c2751486ea88bcc9151e9ce4b8e1
+            depth: '4'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: merge-base-next-action
+          persist-credentials: false
+      - name: Remove .git
+        run: rm -rf merge-base-next-action/.git
+      - name: merge-base-next-action
+        # env:
+        #   AQUA_LOG_LEVEL: debug
+        id: merge-base-next-action
+        uses: ./merge-base-next-action
+        with:
+          repository: srz-zumix/gh-merge-base-next
+          base: ${{ matrix.testcase.base }}
+          head: ${{ matrix.testcase.head }}
+      - name: Test
+        shell: bash
+        env:
+          OUTPUT_SHA: ${{ steps.merge-base-next-action.outputs.sha }}
+          OUTPUT_DEPTH: ${{ steps.merge-base-next-action.outputs.depth }}
+          EXPECTED_SHA: ${{ matrix.testcase.sha }}
+          EXPECTED_DEPTH: ${{ matrix.testcase.depth }}
+        run: |
+          test "${EXPECTED_SHA}" == "${OUTPUT_SHA}"
+          test "${EXPECTED_DEPTH}" == "${OUTPUT_DEPTH}"
