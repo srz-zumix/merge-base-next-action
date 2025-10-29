@@ -41,7 +41,7 @@ This action calculates the merge-base from specified base and head refs, then re
 
 | Name | Description | Required | Default |
 |------|-------------|----------|---------|
-| `repo-token` | The GitHub token used to manage labels | No | `${{ github.token }}` |
+| `repo-token` | The GitHub token used to manage labels | No | `''` |
 | `repository` | The repository in the format owner/repo. If not provided, the repository of the workflow run is used | No | `''` |
 | `base` | The base ref (branch or commit SHA) to find the merge base from | Yes | - |
 | `head` | The head ref (branch or commit SHA) to find the merge base to | Yes | - |
