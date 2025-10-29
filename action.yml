@@ -4,7 +4,7 @@ author: 'srz-zumix'
 inputs:
   repo-token:
     description: 'The GitHub token used to manage labels'
-    default: ${{ github.token }}
+    default: ''
     required: false
   repository:
     description: 'The repository in the format owner/repo. If not provided, the repository of the workflow run is used.'
@@ -49,13 +49,15 @@ runs:
       id: merge-base-next
       shell: bash
       env:
-        GH_TOKEN: ${{ inputs.repo-token }}
-        GH_ENTERPRISE_TOKEN: ${{ inputs.repo-token }}
+        INPUTS_GITHUB_TOKEN: ${{ inputs.repo-token }}
         INPUTS_REPOSITORY: ${{ inputs.repository }}
         INPUTS_BASE: ${{ inputs.base }}
         INPUTS_HEAD: ${{ inputs.head }}
         GH_MERGE_BASE_NEXT: ${{ steps.gh-merge-base-next.outputs.path }}
       run: |
+        export GH_TOKEN="${INPUTS_GITHUB_TOKEN:-${GH_TOKEN:-${{ github.token }}}}"
+        export GH_ENTERPRISE_TOKEN="${INPUTS_GITHUB_TOKEN:-${GH_ENTERPRISE_TOKEN:-${{ github.token }}}}"
+      
         MERGE_BASE_NEXT_OPTIONS=()
         if [ -n "${INPUTS_REPOSITORY}" ]; then
           MERGE_BASE_NEXT_OPTIONS+=(--repo "${INPUTS_REPOSITORY}")
