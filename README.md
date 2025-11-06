@@ -53,6 +53,15 @@ This action calculates the merge-base from specified base and head refs, then re
 | `sha` | The SHA of the next commit on the first-parent path from the merge-base |
 | `depth` | The number of commits between the merge-base and the next commit on the first-parent path |
 
+## Environments
+
+| Name | Description |
+|------|-------------|
+| GH_HOST | Specify the GitHub hostname |
+| GH_TOKEN | Takes priority over inputs.repo-token |
+| GH_ENTERPRISE_TOKEN | Takes priority over inputs.repo-token |
+| AQUA_GITHUB_TOKEN | Set AQUA_GITHUB_TOKEN to avoid rate limits |
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
