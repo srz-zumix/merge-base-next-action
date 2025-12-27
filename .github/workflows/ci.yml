@@ -20,7 +20,7 @@ jobs:
             depth: '4'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           path: merge-base-next-action
           persist-credentials: false
