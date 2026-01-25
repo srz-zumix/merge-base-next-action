@@ -2,6 +2,8 @@ name: Self Test
 on:
   pull_request:
 
+permissions: {}
+
 jobs:
   test:
     permissions:

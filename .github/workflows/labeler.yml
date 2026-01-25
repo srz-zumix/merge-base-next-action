@@ -7,12 +7,15 @@ on:
         description: 'The pull request number(s)'
         required: true
 
+permissions: {}
+
 jobs:
   labeler:
     runs-on: ubuntu-latest
     permissions:
-      issues: write
+      contents: read
       pull-requests: write
+      issues: write
     steps:
       - uses: srz-zumix/labeler-action@5883520a32fbbea61d20ded8fd2e272eedfe3ca9 # v0.4.4
         with:
