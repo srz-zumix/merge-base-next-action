@@ -10,6 +10,10 @@
 registries:
   - type: standard
     ref: v4.474.0 # renovate: depName=aquaproj/aqua-registry
+  - name: local
+    type: local
+    path: aqua-registry.yaml
+
 packages:
   - name: suzuki-shunsuke/pinact@v3.9.0
     tags:
